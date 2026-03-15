@@ -1,0 +1,67 @@
+import Index from "./pages/Index.vue";
+import Pos from "./pages/Pos.vue";
+import Page404 from "@/components/Page404.vue"; // You can replace if module specific 404
+
+ const lazy = (view) => () => import(`@/modules/inventory/pages/${view}.vue`);
+
+
+const defaultAuth = true;
+const defaultMeta = { requiresAuth: defaultAuth };
+
+const makeRoute = (path, component, title, requiresBranch = true) => ({
+  path,
+  component,
+  meta: { title, ...defaultMeta, requiresBranch },
+});
+
+const routes = {
+  path: "/inventory",
+  component: Index,
+  redirect: "/inventory/dashboard",
+  children: [
+   makeRoute("dashboard", lazy("Dashboard"), "Inventory Dashboard"),
+   makeRoute("categories", lazy("Category"), "Category"),
+   makeRoute("units", lazy("Unit"), "Unit"),
+   makeRoute("brands", lazy("Brand"), "Brand"),
+   makeRoute("suppliers", lazy("Supplier"), "Supplier"),
+   makeRoute("supplier-advance", lazy("SupplierAdvance"), "Supplier Advance"),
+   makeRoute("customers", lazy("Customer"), "Customer"),
+   makeRoute("products", lazy("Product"), "Product"),
+   makeRoute("product-sets", lazy("ProductSet"), "Product Set"),
+  {
+    path: "purchases",
+    component: () => import('@/modules/inventory/pages/purchase/Index.vue'),
+    meta: { title: "Purchase", ...defaultMeta, requiresBranch: true },
+  },
+  {
+    path: "purchases/create",
+    component: () => import('@/modules/inventory/pages/purchase/Create.vue'),
+    meta: { title: "Create Purchase", ...defaultMeta, requiresBranch: true },
+  },
+  {
+  path: "purchases/:id/edit",
+  component: () => import('@/modules/inventory/pages/purchase/Create.vue'),
+  meta: { title: "Edit Purchase", ...defaultMeta, requiresBranch: true },
+  props: true
+},
+
+
+
+  
+   
+    {
+      path: ":catchAll(.*)",
+      component: Page404
+    }
+  ]
+};
+
+const posRoute = {
+  path: "/inventory/pos",
+  component: Pos,
+  meta: { title: "POS", ...defaultMeta, requiresBranch: true },
+};
+
+export { posRoute };
+
+export default routes;
