@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Core\Database\Seeders;
+namespace Modules\Core\database\seeders;
 
 use Illuminate\Database\Seeder;
 
@@ -31,6 +31,6 @@ class SettingSeeder extends Seeder
             Setting::updateOrCreate(['key' => $setting['key']], $setting);
         }
 
-       
+
     }
 }

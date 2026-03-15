@@ -4,8 +4,7 @@ import { authenticate } from "../store/authenticate.js";
 import { useBranchStore } from '@/store/branch-store'
 
 import coreRoutes from "../modules/core/router";
-import inventoryRoutes, { posRoute } from "../modules/inventory/router";
-import accountingRoutes from "../modules/accounting/router";
+
 
 
 // import Logout from "@/views/Logout.vue";
@@ -31,10 +30,7 @@ const routes = [
   //   path: "/reset-password",
   //   component: ResetPassword
   // },
-  coreRoutes,
-  inventoryRoutes,
-  posRoute,
-  accountingRoutes
+  coreRoutes
 ];
 
 const router = createRouter({
@@ -56,13 +52,13 @@ router.beforeEach((to, from, next) => {
   }
 
   // Branch check only after login
-  if (needsBranch) {
-    const branchStore = useBranchStore()
+  // if (needsBranch) {
+  //   const branchStore = useBranchStore()
 
-    if (!branchStore.selectedBranchId) {
-      return next("/core/branch-dashboard");
-    }
-  }
+  //   if (!branchStore.selectedBranchId) {
+  //     return next("/core/branch-dashboard");
+  //   }
+  // }
 
   return next(); // ✅ always call next() once
 });

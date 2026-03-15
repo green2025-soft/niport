@@ -14,7 +14,6 @@ const {
   confirmDelete,
   formErrors,
   isSubmitting,
-  confirmDeleteModal,
 } = useResourceApiClient(bUrl, title)
 
 let errors = ref([])

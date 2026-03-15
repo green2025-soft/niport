@@ -53,7 +53,7 @@ const navItems = computed(() => {
   // ✅ Static menu item added at the beginning
   const staticMenu = {
     type: 'link',
-    text: 'Branch Dashboard',
+    text: 'Dashboard',
     to: '/core/branch-dashboard',
     icon: 'fas fa-chart-line'
   }
