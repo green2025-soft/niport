@@ -25,14 +25,18 @@ let allData = ref([])
 let parentLists = ref([])
 let modulesLists = ref([])
 const selectedModuleId = ref(null)
+const isSpinner = ref(false)
 
 onMounted(async () => {
+  isSpinner.value = true
   allData.value = await getList()
   parentLists.value = await customGet(`${bUrl}/parent`)
   modulesLists.value = await customGet(`core/modules`)
   if (modulesLists.value.length > 0) {
-    selectedModuleId.value = modulesLists.value[0].id
+    selectedModuleId.value = modulesLists.value[1].id
+    //  modulesLists.value =  modulesLists.value[1]??[]
   }
+  isSpinner.value = false
 })
 
 const filteredMenuList = computed(() => {
@@ -147,7 +151,8 @@ function openModal(item = null) {
         </BButton>
       </div>
     </div>
-
+    <CenteredSpinner v-if="isSpinner"  />
+    <template v-if="!isSpinner">
     <!-- Module Tabs -->
     <div class="p-2 border-bottom bg-light">
       <BNav tabs>
@@ -156,15 +161,18 @@ function openModal(item = null) {
           :key="module.id"
           :active="selectedModuleId === module.id"
           @click="selectedModuleId = module.id"
+          
           href="#"
         >
+        <template  v-if="module.id ==1">
           {{ module.name }}
+          </template>
         </BNavItem>
       </BNav>
     </div>
 
     <!-- Menu List -->
-    <div class="card-body" v-if="filteredMenuList.length">
+    <div class="card-body table-responsive" v-if="filteredMenuList.length">
       <MenuItem
         v-model="filteredMenuList"
         @edit="handleEdit"
@@ -176,6 +184,7 @@ function openModal(item = null) {
     <div v-else class="text-center text-muted py-4">
       No menu items for this module.
     </div>
+    </template>
   </div>
 
   <!-- Modal -->

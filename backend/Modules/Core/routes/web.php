@@ -12,3 +12,9 @@ Route::controller(NewAllRoutePermissionController::class)->group(function () {
     Route::get('new-all-route-permission','store');
     Route::get('all-routes', 'getAllRoutes');
 });
+
+Route::get('/login', function () {
+    return response()->json([
+        'message' => 'Unauthenticated'
+    ], 401);
+})->name('login');

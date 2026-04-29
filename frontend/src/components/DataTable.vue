@@ -10,7 +10,8 @@ const props = defineProps({
   bUrl: { type: String, required: true },
   paginationLimit: { type: Number, default: 5 },
   hidePrint: { type: Boolean, default: false },
-  isBranch: { type: Boolean, default: false }
+  isBranch: { type: Boolean, default: false },
+  extraParams: { type: Object, default: () => ({}) }
 });
 
 const filterText = shallowRef('');
@@ -33,7 +34,7 @@ const tableData = ref([]);
 const pagination = ref({ total: 0, per_page: 10, current_page: 1 });
 
 // Composable for API calls
-const { gePaginationList} = useResourceApiClient(props.bUrl, '', props.isBranch);
+const { gePaginationList} = useResourceApiClient(props.bUrl, '', props.extraParams);
 
 // Fetch data from API
 const isLoading = ref(false);
@@ -43,7 +44,8 @@ async function fetchData() {
     const response = await gePaginationList({
       page: currentPage.value,
       per_page: perPage.value,
-      search: filterText.value
+      search: filterText.value,
+      ...props.extraParams
     });
     tableData.value = response.data;
     pagination.value = response.pagination;
@@ -112,10 +114,10 @@ defineExpose({
 </script>
 
 <template>
-  <div>
+  <div class="table-responsive">
     <!-- Filter & Print -->
     <div class="row mb-3">
-      <BCol lg="5">
+      <BCol  class="col-sm-10 col-md-5">
         <BInputGroup>
           <BFormInput v-model="filterText" type="search" size="sm" placeholder="Type to Search" />
           <BButton variant="warning" @click="filterText = ''">
@@ -124,7 +126,7 @@ defineExpose({
         </BInputGroup>
       </BCol>
 
-      <BCol lg="7" class="text-end">
+      <BCol  class="text-end col-sm-2 col-md-7">
         <BButton v-if="!hidePrint" variant="primary" size="sm" @click="printADiv('dataTablePrint')">
           <i class="fas fa-print"></i> Print
         </BButton>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Modules\Core\Traits;
 
 use Illuminate\Http\JsonResponse;
@@ -70,7 +70,7 @@ trait ApiResponse
         return $this->respond(false, $message, 422, null, ['errors' => $errors]);
     }
 
-   public function paginated($collection, string $message = 'Success'): JsonResponse
+   public function paginated($collection, string $message = 'Success', array $extra = []): JsonResponse
     {
         if ($collection instanceof \Illuminate\Contracts\Pagination\Paginator) {
 
@@ -81,6 +81,7 @@ trait ApiResponse
                     'current_page' => $collection->currentPage(),
                     'last_page' => $collection->lastPage(),
                 ],
+                ...$extra
             ]);
         }
 
@@ -88,10 +89,11 @@ trait ApiResponse
         return $this->respond(true, $message, 200, [], [
             'pagination' => [
                 'total' => 0,
-                'per_page' => 0, 
+                'per_page' => 0,
                 'current_page' => 1,
                 'last_page' => 1,
             ],
+            ...$extra
         ]);
     }
 

@@ -93,7 +93,7 @@ onMounted(() => {
                             All rights reserved.
                         </div>
                         <div class="col-md-6 text-end ">
-                            <strong>Powered by <a href="#">{{ settingsStore.data.app_name  }}</a>.</strong>
+                            <strong>Powered by <a target="_blank" href="https://greensoftwarebd.com/">Green Software & Technology.</a>.</strong>
                         </div>
                     </div>
                 </div>

@@ -18,6 +18,8 @@ export const useMenuStore = defineStore('menu', {
           showNotification: false,
         })
 
+        
+
         this.menus = res.data || res
         this.isLoaded = true
       } catch (err) {

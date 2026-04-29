@@ -54,8 +54,8 @@ const navItems = computed(() => {
   const staticMenu = {
     type: 'link',
     text: 'Dashboard',
-    to: '/core/branch-dashboard',
-    icon: 'fas fa-chart-line'
+    to: '/core/dashboard',
+    icon: 'fas fa-tachometer-alt'
   }
 
   return [staticMenu, ...dynamicMenus]
@@ -67,6 +67,7 @@ const navItems = computed(() => {
 
 
 <template>
+  
   
   <DashboardLayout v-model="sidenavCollapsed">
     <template #sideNav>

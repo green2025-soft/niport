@@ -9,12 +9,11 @@ use Modules\Core\Http\Controllers\Api\SettingController;
 use Modules\Core\Http\Controllers\Api\PermissionController;
 use Modules\Core\Http\Controllers\Api\PermissionAssignController;
 use Modules\Core\Http\Controllers\Api\AdminMenuController;
-use Modules\Core\Http\Controllers\Api\BranchController;
 use Modules\Core\Http\Controllers\Api\UserMenuController;
 
 Route::prefix('v1/core')->group(function () {
     Route::controller(AuthController::class)->group(function () {
-        Route::post('login', 'login');
+        Route::post('login', 'login')->name('login');
         Route::middleware('auth:sanctum')->post('/logout', 'logout');
     });
 
@@ -33,7 +32,7 @@ Route::prefix('v1/core')->group(function () {
             Route::get('admin-menus/parent', [AdminMenuController::class, 'parentMenus'])->name('admin-menus.parent');
             Route::post('admin-menus/reorder', [AdminMenuController::class, 'reorder'])->name('admin-menus.reorder');
             Route::apiResource('admin-menus', AdminMenuController::class);
-            
+
             Route::prefix('permission')->name('permission.')->group(function () {
                 Route::controller(PermissionController::class)->group(function () {
                     Route::get('sections', 'sections')->name('sections');
@@ -47,8 +46,6 @@ Route::prefix('v1/core')->group(function () {
 
             });
 
-            Route::get('branches/lists', [BranchController::class, 'branchList'])->name('.food-lists');
-            Route::apiResource('branches', BranchController::class);
 
         });
 
@@ -57,8 +54,8 @@ Route::prefix('v1/core')->group(function () {
             auth()->user()->touch(); // session timestamp extend
             return response()->json(['message' => 'Session refreshed']);
         });
-        
+
     });
-    
+
 });
 

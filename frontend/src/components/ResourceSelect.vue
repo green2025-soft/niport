@@ -1,14 +1,15 @@
 <template>
   <v-select
     v-model="selected"
+    id="resourceSelect"
     :options="options"
     :get-option-label="getOptionLabel"
     :filterable="false"
     :loading="loading"
-    placeholder="Select..."
+    :placeholder="typeof placeholder === 'function' ? placeholder() : placeholder"
     @search="onSearch"
     @open="onOpen"
-
+  :clearable="true"
     :multiple="multiple"
   >
     <template #list-footer>
@@ -48,7 +49,8 @@ const props = defineProps({
   positional: { type: Boolean, default: false },
   optionsData: { type: Array, default: () => [] },
 
-  extraParams: { type: Object, default: () => ({}) }
+  extraParams: { type: Object, default: () => ({}) },
+  placeholder: { type: [String, Function], default: 'Select...' },
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -258,6 +260,20 @@ defineExpose({
   onOpen
 })
 
+
+watch(
+  () => props.extraParams,
+  async () => {
+    page.value = 1
+    options.value = []
+    await fetchData()
+
+    if (props.isEdit && props.modelValue) {
+      await processModelValue(props.modelValue, true)
+    }
+  },
+  { deep: true }
+)
 </script>
 
 <style scoped>
@@ -265,5 +281,12 @@ defineExpose({
   text-align: center;
   font-style: italic;
   padding: 8px;
+}
+
+
+</style>
+<style>
+#resourceSelect .vs__clear {
+  display: block !important;
 }
 </style>

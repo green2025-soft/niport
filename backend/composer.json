@@ -33,8 +33,7 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
             "Modules\\Core\\": "Modules/Core/app/",
-			"Modules\\Inventory\\": "Modules/Inventory/app/",
-			"Modules\\Accounting\\": "Modules/Accounting/app/"
+            "Modules\\Niport\\": "Modules/Niport/app/"
         }
     },
     "autoload-dev": {

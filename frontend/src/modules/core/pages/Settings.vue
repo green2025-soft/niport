@@ -62,46 +62,72 @@ async function reloadSettings() {
                         <br>
                         <BaseFormGroup :required="true"
                             label="App Name"
-                            label-cols="2">
-                            <BCol cols="5">
+                            label-cols="12"
+                            label-cols-sm="4"
+                            label-cols-md="2"
+                            >
+                            <div class="col-sm-5">
                                 <BFormInput v-model="settings.app_name" />
-                            </BCol>
+                            </div>
                         </BaseFormGroup>
                         <BaseFormGroup  
                             label="App Url"
-                            label-cols="2">
-                            <BCol cols="5">
+                             label-cols="12"
+                            label-cols-sm="4"
+                            label-cols-md="2"
+                            >
+                            <div class="col-sm-5">
                                 <BFormInput v-model="settings.app_url" />
-                            </BCol>
+                             </div>
                         </BaseFormGroup>
                          <BFormGroup  class="mb-2"
                             label="App E-mail"
-                            label-cols="2">
-                            <BCol cols="5">
+                            label-cols="12"
+                            label-cols-sm="4"
+                            label-cols-md="2"
+                            >
+                            <div class="col-sm-5">
                                 <BFormInput type="email" v-model="settings.app_email"  />
-                            </BCol>
+                            </div>
                         </BFormGroup>
                         <BFormGroup  class="mb-2"
                             label="App Contact"
-                            label-cols="2">
-                            <BCol cols="5">
+                             label-cols="12"
+                            label-cols-sm="4"
+                            label-cols-md="2"
+                            >
+                            <div class="col-sm-5">
                                 <BFormInput v-model="settings.app_contact"  />
-                            </BCol>
+                            </div>
                         </BFormGroup>
                         <BFormGroup  class="mb-2"
-                            label="App Address"
-                            label-cols="2">
-                            <BCol cols="5">
+                            label=" Address"
+                            label-cols="12"
+                            label-cols-sm="4"
+                            label-cols-md="2"
+                            >
+                            <div class="col-sm-5">
                                 <BFormInput v-model="settings.app_address" />
-                            </BCol>
+                            </div>
                         </BFormGroup>
-                        <BFormGroup  class="mb-2"
+                         <BFormGroup  class="mb-2"
+                            label="Conducted By "
+                             label-cols="12"
+                            label-cols-sm="4"
+                            label-cols-md="2"
+                            >
+                            <div class="col-sm-5">
+                                <BFormInput v-model="settings.conducted_by"  />
+                            </div>
+                        </BFormGroup>
+                         
+                        <!-- <BFormGroup  class="mb-2"
                             label="Currency Symbol"
                             label-cols="2">
                             <BCol cols="5">
                                 <BFormInput v-model="settings.currency_symbol"  />
                             </BCol>
-                        </BFormGroup>
+                        </BFormGroup> -->
                         <!-- <BFormGroup  class="mb-2"
                             label="Symbol Position"
                             label-cols="2">
@@ -117,17 +143,23 @@ async function reloadSettings() {
                         <br>
                         <BaseFormGroup :required="true"
                             label="App Logo"
-                            label-cols="2">
-                            <BCol cols="5">
+                             label-cols="12"
+                            label-cols-sm="4"
+                            label-cols-md="2"
+                            >
+                            <div class="col-sm-5">
                                  <FileUpload v-model="settings.app_logo"  preview />
-                            </BCol>
+                            </div>
                         </BaseFormGroup>
                         <BaseFormGroup :required="true"
-                            label="Icon Logo"
-                            label-cols="2">
-                            <BCol cols="5">
+                            label="Govt. Logo"
+                             label-cols="12"
+                            label-cols-sm="4"
+                            label-cols-md="2"
+                            >
+                            <div class="col-sm-5">
                                 <FileUpload v-model="settings.icon_logo"  preview />
-                            </BCol>
+                            </div>
                         </BaseFormGroup>
                     </div>
                 </div>

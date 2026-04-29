@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import NProgress from "nprogress";
 import { authenticate } from "../store/authenticate.js";
-import { useBranchStore } from '@/store/branch-store'
+
 
 import coreRoutes from "../modules/core/router";
+import niportRoutes from "../modules/niport/router";
 
 
 
@@ -30,7 +31,8 @@ const routes = [
   //   path: "/reset-password",
   //   component: ResetPassword
   // },
-  coreRoutes
+  coreRoutes,
+  niportRoutes
 ];
 
 const router = createRouter({

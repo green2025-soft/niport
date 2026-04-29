@@ -18,10 +18,10 @@ const makeRoute = (path, component, title, requiresBranch = false) => ({
 const routes = {
   path: "/core",
   component: Index,
-  redirect: "/core/branch-dashboard",
+  redirect: "/core/dashboard",
   children: [
-     makeRoute("branch-dashboard", lazy("BranchDashboard"), "Branch Dashboard"),
-     makeRoute("module-dashboard", lazy("ModuleDashboard"), "Module Dashboard", true),
+
+     makeRoute("dashboard", lazy("Dashboard"), "Dashboard"),
      makeRoute("settings", lazy("Settings"), "Settings"),
      makeRoute("modules", lazy("Modules"), "Module"),
      makeRoute("users", lazy("Users"), "Users"),

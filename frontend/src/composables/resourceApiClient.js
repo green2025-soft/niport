@@ -20,7 +20,7 @@ export function useResourceApiClient(baseUrl, title = 'Resource', isBranch = fal
   
 
    
-  const fullBaseUrl = isBranch ? `${baseUrl}?branch_id=${branchId.value}` : baseUrl
+  const fullBaseUrl = baseUrl
 
   const getList = async (params = {}) => {
     isLoading.value = true
@@ -91,9 +91,7 @@ export function useResourceApiClient(baseUrl, title = 'Resource', isBranch = fal
     isSubmitting.value = true
     const message = $message==''?`${title} created successfully`:$message
     
-      if(isBranch){
-        data.branch_id = branchId
-      }
+     
     try {
       const res = await api.post(baseUrl, data, {
         showNotification:showNotification,
@@ -116,9 +114,7 @@ const update = async (id, data,  $message = '', showNotification=true) => {
   formErrors.value = {}
   isSubmitting.value = true
   const message = $message==''?`${title}  updated successfully`:$message
-   if(isBranch){
-      data.branch_id = branchId
-    }
+  
   try {
     // If not multipart, use regular PUT
     const res = await api.put(`${baseUrl}/${id}`, data, {
@@ -183,7 +179,7 @@ const updateWithFile = async (id, data, $message = '') => {
 const customGet = async (customUrl, params = {}, isCBranchId=true ) => {
   isLoading.value = true
 
-  customUrl = isCBranchId?customUrl+`?branch_id=${branchId.value}`:customUrl
+  
   try {
     const res = await api.get(customUrl, {
       requiresAuth: true,

@@ -16,14 +16,15 @@ class NewAllRoutePermissionController extends Controller
 
 
     public function __construct(){
-    
-        
+
+
     }
 
     public function store()
     {
         $roleId = 1; // default role (e.g., Super Admin)
         $modules = $this->getModuleSlugIdMap();
+
         $routes = $this->getFilteredRoutes();
 
         $permissionIds = [];
@@ -32,6 +33,7 @@ class NewAllRoutePermissionController extends Controller
         foreach ($routes as $route) {
             $routeName = $route->getName();
             $moduleSlug = $this->getRoutePart($routeName, 1); // e.g., 'roles' from 'api.core.roles.index'
+            // $moduleSlug = 'core'; // e.g., 'roles' from 'api.core.roles.index'
 
             if (!$moduleSlug || !isset($modules[$moduleSlug])) {
                 continue;
@@ -39,6 +41,9 @@ class NewAllRoutePermissionController extends Controller
 
             $moduleId = $modules[$moduleSlug];
             $sectionName = $this->getRoutePart($routeName, 2);
+             if (!$sectionName) {
+                continue;
+            }
             $totalRoutes++;
 
             // Create or get PermissionGroup
@@ -111,7 +116,7 @@ class NewAllRoutePermissionController extends Controller
         $role = Role::find($roleId);
 
         if ($role && !empty($permissionIds)) {
-            $role->syncPermissions($permissionIds); 
+            $role->syncPermissions($permissionIds);
         }
     }
 

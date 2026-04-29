@@ -1,0 +1,11 @@
+{
+    "name": "Niport",
+    "alias": "niport",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Niport\\Providers\\NiportServiceProvider"
+    ],
+    "files": []
+}

@@ -10,7 +10,7 @@ use Modules\Core\Models\Module;
 class UserMenuController extends BaseApiController
 {
     protected string $title = 'User menu';
-    
+
 
     public function __construct()
     {

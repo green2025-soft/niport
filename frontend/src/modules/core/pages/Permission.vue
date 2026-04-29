@@ -145,7 +145,9 @@ async function savePermissions() {
   <div class="container-fluid">
     <div class="card card-outline card-info">
       <div class="card-header">
-        <h2 class="card-title"><i class="fas fa-tasks"></i> {{ title }}</h2>
+        <h2 class="card-title">
+          <!-- <i class="fas fa-tasks"></i> {{ title }} -->
+        </h2>
         <div class="card-tools">
           <BButton  class="me-2" size="sm"><i class="fa fa-edit"></i> Section Edit</BButton>
           <BButton variant="primary" size="sm"  class="me-2"><i class="fa fa-edit"></i> Route Edit</BButton>
@@ -156,10 +158,10 @@ async function savePermissions() {
       <div class="card-body" v-if="roleLists.length">
         <b-row class="align-items-center">
           <!-- Role -->
-          <BCol cols="1">
+          <div class="col-md-1" >
             <label for="role">Role <code>*</code></label>
-          </BCol>
-          <BCol cols="2">
+          </div>
+          <div class="col-sm-2">
             <BFormSelect
               v-model="selectedRole"
               :options="[
@@ -167,26 +169,26 @@ async function savePermissions() {
                 ...roleLists.map(r => ({ value: r.id, text: r.name }))
               ]"
             />
-          </BCol>
+          </div>
 
           <!-- Module -->
-          <BCol cols="1">
+          <div class="col-md-1">
             <label for="module">Module</label>
-          </BCol>
-          <BCol cols="2">
+          </div>
+          <div class="col-sm-2">
             <BFormSelect v-model="selectedModule" :options="moduleOptions" />
-          </BCol>
+          </div>
 
           <!-- Section -->
-          <BCol cols="1">
+          <div class="col-md-1">
             <label for="section_id">Section</label>
-          </BCol>
-          <BCol cols="3">
+          </div>
+          <div class="col-sm-3">
             <BFormSelect v-model="selectedSection" :options="sectionOptions" />
-          </BCol>
+          </div>
 
           <!-- Submit -->
-          <BCol cols="2">
+          <div class="col-sm-2">
 
                 <LoadingButton
                     text="Search"
@@ -194,7 +196,7 @@ async function savePermissions() {
                     @click="fetchPermissions"
                     />
            
-          </BCol>
+          </div>
         </b-row>
       </div>
     </div>

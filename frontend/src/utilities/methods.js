@@ -498,6 +498,44 @@ export function clampPercent(value) {
   return Math.min(100, Math.max(0, value))
 }
 
+export function runStategy(){
+   return {
+    1: 'সরকারীভাবে',
+    2: 'ট্রাষ্টীবোর্ড দ্বারা',
+    3: 'সমিতি দ্বারা',
+    4: 'অন্যান্য',
+  };
+}
+
+
+export function mediaOfCompanyService(){
+  return {
+    1:'ক) আউটডোর সার্ভিস',
+    2:'খ) ইনডোর সার্ভিস',
+    3:'গ) ডায়াগনষ্টিক সেন্টার',
+    4:'ঘ) কনসালটেশন সেন্টার',
+    5:'ঙ) অন্যান্য',
+  }
+}
+
+export function typesOfOwnership(){
+  return {
+    1:'১. সরকারী',
+    2:'২. নিজস্ব/ব্যাক্তিমালিকানাধীন',
+    3:'৩. মিশনারী',
+    4:'৪. এনজিও ',
+    5:'৫. অন্যান্য'
+  }
+}
+
+export function typesOfCompany(){
+  return {
+    1:'ক) কমিউনিটি ক্লিনিক',
+    2:'খ) এনজিও ক্লিনিক',
+  }
+}
+
+
 
 
 

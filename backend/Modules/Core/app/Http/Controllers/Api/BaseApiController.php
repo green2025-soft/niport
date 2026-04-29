@@ -16,9 +16,9 @@ class BaseApiController extends Controller
     /**
      * Return paginated list response
      */
-    protected function listResponse($paginated)
+    protected function listResponse($paginated, array $extra = [])
     {
-        return $this->paginated($paginated, "{$this->title} list fetched successfully.");
+        return $this->paginated($paginated, "{$this->title} list fetched successfully.", $extra);
     }
 
     protected function allItems(){
@@ -58,7 +58,7 @@ class BaseApiController extends Controller
     {
         return $this->success(null, "{$this->title} deleted successfully.");
     }
-	
+
 	public function indexQuery()
 	{
 		$query = ($this->model)::query();
@@ -116,7 +116,7 @@ class BaseApiController extends Controller
      */
     public function destroyData($id)
     {
-        ($this->model)::where('id', $id)->delete();
+        ($this->model)::findOrFail($id)->delete();
         return $this->deletedResponse();
     }
 }

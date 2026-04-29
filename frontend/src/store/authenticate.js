@@ -56,7 +56,7 @@ const authenticate = reactive({
 
       authenticate.isError = false;
 
-      router.push("core/branch-dashboard");
+      router.push("core/dashboard");
     } catch (errors) {
 
   

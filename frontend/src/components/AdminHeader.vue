@@ -56,6 +56,13 @@ const user = auth.getUser();
       <button class="btn" id="sidebarToggle" @click="toggleSidebar">
         <i class="fas fa-bars"></i>
       </button>
+       <RouterLink
+          :to="`/core/dashboard`"
+          class="text-decoration-none "
+        >
+        <b>Home</b>
+        </RouterLink>
+      
 
       <!-- Right Section -->
       <ul class="list-unstyled d-flex align-items-center mb-0">
